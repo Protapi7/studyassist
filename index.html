@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>StudyAssist: AI chapterwise notes, 2/5/10 mark Q&A and mindmaps</title><meta name="description" content="Upload a syllabus and get chapterwise study notes, 2, 5 and 10 mark questions with answers, and mindmaps. Free.">
+<style>
+:root{--bg:#f8fafc;--card:#fff;--fg:#0f172a;--mut:#64748b;--bd:#e2e8f0;--pri:#6366f1}
+@media(prefers-color-scheme:dark){:root{--bg:#0f172a;--card:#1e293b;--fg:#e2e8f0;--mut:#94a3b8;--bd:#334155}}
+*{box-sizing:border-box}body{margin:0;font:15px/1.6 system-ui,sans-serif;background:var(--bg);color:var(--fg)}
+header{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-bottom:1px solid var(--bd);background:var(--card)}
+h1{font-size:18px;margin:0}#bar{position:sticky;top:0;z-index:5;padding:8px 18px;background:var(--card);border-bottom:1px solid var(--bd);font-size:14px;color:var(--mut)}
+#bar.err{background:#fee2e2;color:#991b1b}#bar.spin{color:var(--pri)}#bar.spin::before{content:"⏳ "}#bar.err::before{content:"⚠ "}
+.wrap{display:flex;min-height:calc(100vh - 90px)}
+aside{width:320px;padding:14px;border-right:1px solid var(--bd);background:var(--card);overflow:auto}
+main{flex:1;padding:20px 28px;min-width:0}
+input,select,textarea{width:100%;padding:8px;margin:4px 0;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--fg);font:inherit}
+textarea{height:110px;resize:vertical}
+button{padding:7px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--fg);cursor:pointer;font:inherit}
+button:disabled{opacity:.5;cursor:wait}button.pri,button.on{background:var(--pri);color:#fff;border-color:var(--pri)}button.full{width:100%;margin:4px 0}
+.muted{color:var(--mut);font-size:13px}.u{font-size:12px;font-weight:600;color:var(--mut);margin:12px 0 4px;text-transform:uppercase}
+.c{padding:6px 8px;border-radius:8px;cursor:pointer;font-size:14px}.c:hover{background:var(--bg)}.c.on{background:var(--pri);color:#fff}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+section{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:6px 20px 14px;margin-bottom:16px}
+h2{margin:.6em 0 .3em}h3{margin:1em 0 .2em;color:var(--pri)}.qa{padding:10px 0;border-top:1px solid var(--bd)}
+.mm{overflow-x:auto;padding:8px 0}
+@media(max-width:800px){.wrap{flex-direction:column}aside{width:100%}}
+@media print{header,#bar,aside,.tabs{display:none}main{padding:0}.wrap{display:block}section{break-inside:avoid}}
+</style></head><body>
+<header><h1>📚 StudyAssist</h1><button id="bSet">⚙ Settings</button></header>
+<div id="bar"><span id="st">Ready. Step 1: add your API key in ⚙ Settings.</span></div>
+<div class="wrap"><aside>
+<div id="setBox" hidden>
+<select id="prov"><option value="gemini">Google Gemini (free key)</option><option value="anthropic">Anthropic Claude</option></select>
+<input id="model" list="models" placeholder="Model name"><datalist id="models"></datalist>
+<input id="key" type="password" placeholder="Paste API key here">
+<button class="full pri" id="bKey">Save &amp; test connection</button>
+<button class="full" id="bModels">Load available models</button>
+<p class="muted">Free Gemini key: aistudio.google.com/apikey. Keys stay in this browser.</p></div>
+<div class="u">Subject / Syllabus</div>
+<textarea id="txt" placeholder="Paste syllabus, a subject name, or a single topic…"></textarea>
+<input type="file" id="file" accept=".pdf,.txt,.md">
+<button class="full pri" id="bBuild">1. Build chapter outline</button>
+<button class="full" id="bAll">2. Generate everything</button>
+<button class="full" id="bExp">Export JSON</button>
+<nav id="nav"></nav></aside>
+<main id="main"></main></div>
+<script src="app.js"></script></body></html>
